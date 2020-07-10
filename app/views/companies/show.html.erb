@@ -3,15 +3,18 @@
   <div class="row">
     <div class="col">
       <%= link_to "< Companies", companies_path %>
+
     </div>
     <div class="col text-right">
       <%= link_to "Edit", edit_company_path %>
+      <%= link_to 'Destroy', company_path(@company),
+            data: {:confirm => 'Are you sure?'}, :method => :delete %>
     </div>
   </div>
   <div class="bg-success">
     <div class="container p-5 text-white">
       <h1><%= @company.name %></h1>
-      <h3>City, State</h3>
+      <h3><%= identify_zipcode %></h3>
       <pre>☝️ This is what needs to be udpated. Examples: Atlanta, GA or Nashvile, TN</pre>
     </div>
   </div>

@@ -1,4 +1,7 @@
 class CompaniesController < ApplicationController
+
+  helper CompaniesHelper
+
   before_action :set_company, except: [:index, :create, :new]
 
   def index
@@ -17,7 +20,7 @@ class CompaniesController < ApplicationController
     if @company.save
       redirect_to companies_path, notice: "Saved"
     else
-      render :new
+      redirect_back fallback_location: root_path, error: @company.errors.full_messages.join(', ')
     end
   end
 
@@ -30,7 +33,15 @@ class CompaniesController < ApplicationController
     else
       render :edit
     end
-  end  
+  end
+
+  def destroy
+    if @company.destroy
+      redirect_to companies_path, notice: "Successfully Deleted"
+    else
+      redirect_to companies_path, error: "something went wrong"
+    end
+  end
 
   private
 
@@ -49,5 +60,5 @@ class CompaniesController < ApplicationController
   def set_company
     @company = Company.find(params[:id])
   end
-  
+
 end
