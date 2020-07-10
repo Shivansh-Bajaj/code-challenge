@@ -1,12 +1,15 @@
 hometown_painting:
-  name: Hometown Painting
-  email: "hometown_painting@hometown_painting.com"
+  name: "Hometown Painting"
+  email: "hometown_painting@hometownpainting.com"
   zip_code: "93003"
   phone: "555-808-8888"
+  city: "Ventura"
+  state: "California"
+  state_code: "CA"
 
 wolf_painting:
   name: "Wolf Painting"
-  email: "wolf_painting@wolf_painting.com"
+  email: "wolf@ainting@wolf_painting.com"
   zip_code: "30301"
   phone: "555-808-8888"
 
@@ -33,3 +36,21 @@ brown_painting:
   email: "brown_painting@brown_painting.com"
   zip_code:
   phone: "555-808-8888"
+
+turing_painting:
+  name: "Alan Turing Painting"
+  email: "alan.turing@getmainstreet.com"
+  zip_code: "93002"
+  phone: "4433-898-3322"
+  city: "Ventura"
+  state: "California"
+  state_code: "CA"
+
+huffman_painting:
+  name: "huffman painting"
+  email: ""
+  zip_code: "93003"
+  phone: "4433-898-3324"
+  city: "Ventura"
+  state: "California"
+  state_code: "CA"

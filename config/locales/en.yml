@@ -31,3 +31,5 @@
 
 en:
   hello: "Hello world"
+  company:
+    email_domain_invalid: "should be with domain getmainstreet.com"

@@ -1,7 +1,5 @@
 class CompaniesController < ApplicationController
 
-  helper CompaniesHelper
-
   before_action :set_company, except: [:index, :create, :new]
 
   def index
@@ -17,7 +15,7 @@ class CompaniesController < ApplicationController
 
   def create
     @company = Company.new(company_params)
-    if @company.save
+  if @company.save
       redirect_to companies_path, notice: "Saved"
     else
       redirect_back fallback_location: root_path, error: @company.errors.full_messages.join(', ')

@@ -26,21 +26,19 @@ class CompaniesControllerTest < ApplicationSystemTestCase
 
   test "Update" do
     visit edit_company_path(@company)
-
     within("form#edit_company_#{@company.id}") do
       fill_in("company_name", with: "Updated Test Company")
-      fill_in("company_zip_code", with: "93009")
+      fill_in("company_zip_code", with: "37201")
       click_button "Update Company"
     end
-
-    assert_text "Changes Saved"
-
     @company.reload
+    assert_text "Changes Saved"
     assert_equal "Updated Test Company", @company.name
-    assert_equal "93009", @company.zip_code
+    assert_equal "37201", @company.zip_code
+    assert_equal "Nashville, Tennessee(TN)", @company.address
   end
 
-  test "Create" do
+  test "Create with valid email domain" do
     visit new_company_path
 
     within("form#new_company") do
@@ -48,6 +46,35 @@ class CompaniesControllerTest < ApplicationSystemTestCase
       fill_in("company_zip_code", with: "28173")
       fill_in("company_phone", with: "5553335555")
       fill_in("company_email", with: "new_test_company@getmainstreet.com")
+      click_button "Create Company"
+    end
+
+    assert_text "Saved"
+
+    last_company = Company.last
+    assert_equal "New Test Company", last_company.name
+    assert_equal "28173", last_company.zip_code
+  end
+
+  test "create should not work with non getmainstreet domain email" do
+    visit new_company_path
+    within("form#new_company") do
+      fill_in("company_name", with: "New Test Company")
+      fill_in("company_zip_code", with: "28173")
+      fill_in("company_phone", with: "5553335555")
+      fill_in("company_email", with: "new_test_company@somemail.com")
+      click_button "Create Company"
+    end
+    assert_text "Email should be with domain getmainstreet.com"
+  end
+
+  test "create with blank email" do
+    visit new_company_path
+
+    within("form#new_company") do
+      fill_in("company_name", with: "New Test Company")
+      fill_in("company_zip_code", with: "28173")
+      fill_in("company_phone", with: "5553335555")
       click_button "Create Company"
     end
 
