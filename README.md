@@ -59,7 +59,7 @@ Email Domain Validation: Domain validation is done from model layer
 
 ### ☐ Add City State To Companies from Zip Code.
   - zip_code gem is used to find city, state, state_code from zipcode.
-  - Empty zipcode is allowed.
+  - Empty zipcode is not allowed.
   - Added 3 columns to company table(city, state, state_code).
   - Address is available as a function attribute to company object with format: "<city>, <state>(<state_code>)".
 
