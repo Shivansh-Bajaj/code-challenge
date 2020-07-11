@@ -17,6 +17,17 @@ module CompanyTest
       company = Company.new(name: "Martin Fowler painting", zip_code: "85001", phone: "4433-898-3322")
       assert company.valid?
     end
+
+    test "should not allow black zipcode" do
+      company = companies(:huffman_painting)
+      refute company.update(zip_code: "")
+    end
+
+    test "should not allow update zipcode to black string" do
+      company = companies(:huffman_painting)
+      refute company.update(zip_code: "")
+      assert_includes company.errors.full_messages, "Zip code can't be blank"
+    end
   end
 
   class PopulateAddress < ActiveSupport::TestCase
@@ -37,12 +48,6 @@ module CompanyTest
       company = companies(:turing_painting)
       company.update(zip_code: "85002")
       assert_equal company.address, "Phoenix, Arizona(AZ)"
-    end
-
-    test "should update address to empty string when zip code is updated blank" do
-      company = companies(:huffman_painting)
-      company.update(zip_code: "")
-      assert_equal "", company.address
     end
   end
 end

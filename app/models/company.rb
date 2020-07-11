@@ -6,6 +6,7 @@ class Company < ApplicationRecord
 
   has_rich_text :description
   validates :email, format: { with: REGEX_EMAIL, message: I18n.t('company.email_domain_invalid'), on: :create }, :allow_blank => true
+  validates :zip_code, presence: true
 
   before_save :update_address
   before_update :update_address
