@@ -33,6 +33,7 @@ class CompaniesController < ApplicationController
     end
   end
 
+  # delete functionality for company object
   def destroy
     if @company.destroy
       redirect_to companies_path, notice: "Successfully Deleted"

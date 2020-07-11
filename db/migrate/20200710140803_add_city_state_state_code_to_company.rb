@@ -5,7 +5,6 @@ class AddCityStateStateCodeToCompany < ActiveRecord::Migration[6.0]
     add_column :companies, :state_code, :string
     Company.find_each do |company|
       company.update_address
-      byebug
       company.save
     end
   end

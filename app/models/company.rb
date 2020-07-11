@@ -2,19 +2,21 @@ class Company < ApplicationRecord
 
   attr_accessor :address
 
+  REGEX_EMAIL = /\A([^@\s]+)@getmainstreet.com/i
+
   has_rich_text :description
-  validates :email, format: { with: /\A([^@\s]+)@getmainstreet.com/i, message: I18n.t('company.email_domain_invalid'), on: :create }, :allow_blank => true
+  validates :email, format: { with: REGEX_EMAIL, message: I18n.t('company.email_domain_invalid'), on: :create }, :allow_blank => true
 
   before_save :update_address
   before_update :update_address
 
+  # address taken from zip code as string
   def address
     return "" unless [city, state, state_code].all?(&:present?)
     "#{city}, #{state}(#{state_code})"
   end
 
-  private
-
+  # function will populate city state state_code
   def update_address
     address_zip = ZipCodes.identify(zip_code) || {}
     self.city = address_zip[:city]
