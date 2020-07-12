@@ -2,7 +2,7 @@
 
 Welcome to the Main Street code challenge. This repository includes a very basic rails app to be used to assessment and testing purposes only.
 
-Note: This codebase is not nearly or fully representative of our platform however it's a good small sample of the kinds of technology and problems we are solving. 
+Note: This codebase is not nearly or fully representative of our platform however it's a good small sample of the kinds of technology and problems we are solving.
 
 ## Getting Started
 
@@ -44,3 +44,29 @@ The City and State should be added as attributes to the Company object.
 ### ☐ Include test coverage for all your changes
 
 For all functionality extend or add tests from existing tests.
+
+
+# Implementation:
+
+### ☐ Add a way to delete companies.
+Delete functionality can be found on show page next to edit button.
+Controller: CompaniesController#destroy
+
+### ☐ Add Custom Validation to company email Address (When Present)
+Email Validation: Email format validation is taken cake in view layer.
+
+Email Domain Validation: Domain validation is done from model layer
+
+### ☐ Add City State To Companies from Zip Code.
+  - zip_code gem is used to find city, state, state_code from zipcode.
+  - Empty zipcode is not allowed.
+  - Added 3 columns to company table(city, state, state_code).
+  - Address is available as a function attribute to company object with format: "<city>, <state>(<state_code>)".
+
+
+
+
+
+
+
+
